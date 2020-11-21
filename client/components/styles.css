@@ -54,13 +54,12 @@ body {
 	text-align: center;
 }
 
-.control-panel {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+.fish-tank-div {
+	display: flex;
+	justify-content: center;
 }
 
 .bttn {
-
 	display: flex;
 	width: 385px;
 	height: 97px;

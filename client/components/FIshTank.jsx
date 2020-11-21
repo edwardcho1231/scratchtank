@@ -86,6 +86,7 @@ const FishTank = (props) => {
       max: { x: 800, y: 600 },
     });
   };
+
   useEffect(() => {
     // World.clear(world, true);
     // Engine.clear();
@@ -93,26 +94,28 @@ const FishTank = (props) => {
     return () => {
       console.log('unmounted');
     };
-  }, [fishCount]);
+  });
 
   const syncFishes = () => {
-    fetch('/api/fishes')
+    fetch('/api')
     .then(data => json(data))
     .then(response => console.log(response))
     .catch(e => console.log(e))
   }
 
+
+  const logout = () => {
+    fetch('/api/auth/logout')
+  }
+
   return (
-    <div>
+    <div className="fish-tank-div">
       <div className="canvas" width={'100'} height={'100px'}></div>
-      <button
-        onClick={() => {
-          addFish();
-        }}
-      >
-        ADD FISH PLS
-      </button>
-      <button onClick={syncFishes}>Sync Fishes</button>
+      <div className="button-div">
+        <button onClick={() => {addFish()}}>ADD FISH PLS</button>
+        <button onClick={syncFishes}>Sync Fishes</button>
+        <button onClick={() => {logout(); window.location.href = '/'}}>Log out</button>
+      </div>
     </div>
   );
 };

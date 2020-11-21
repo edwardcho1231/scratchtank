@@ -3,6 +3,7 @@ const router = express.Router();
 const authRouter = require('./auth-routes');
 
 const userController = require('../controllers/userController');
+const fishController = require('../controllers/fishController')
 
 router.use('/auth', authRouter);
 
@@ -11,7 +12,7 @@ router.get('/', userController.verifyUser, (req, res) => {
   res.json({user: req.user[0]})
 });
 
-router.use('/fishes', userController.verifyUser, (req, res) => {
+router.use('/fishes', userController.verifyUser, fishController.fetchFishes, (req, res) => {
   console.log('Get to fishes');
   res.json({user: req.user[0]})
 })
